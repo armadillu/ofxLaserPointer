@@ -39,6 +39,7 @@ void testApp::update(){
 
 void testApp::draw(){
 
+	ofSetColor(255,255);
 	laser.draw();
 	ofSetColor(255,0,0);
 
