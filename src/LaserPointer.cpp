@@ -166,12 +166,13 @@ void LaserPointer::_keyPressed(ofKeyEventArgs &e){
 void LaserPointer::_draw(ofEventArgs &args){	//last thing to draw
 	if ( gui.isOn() ){
 		ofSetupScreen();
+		glLineWidth(1);
 		gui.draw();
 	}
 }
 
 void LaserPointer::blobAdded(ofxBlob &_blob){
-    ofLog(OF_LOG_NOTICE, "Blob ID " + ofToString(_blob.id) + " added" );
+    //ofLog(OF_LOG_NOTICE, "Blob ID " + ofToString(_blob.id) + " added" );
 	app->mousePressed(canvas.width * _blob.boundingRect.getCenter().x , canvas.height * _blob.boundingRect.getCenter().y , 0);
 }
 
@@ -181,7 +182,7 @@ void LaserPointer::blobMoved(ofxBlob &_blob){
 }
 
 void LaserPointer::blobDeleted(ofxBlob &_blob){
-    ofLog(OF_LOG_NOTICE, "Blob ID " + ofToString(_blob.id) + " deleted" );
+    //ofLog(OF_LOG_NOTICE, "Blob ID " + ofToString(_blob.id) + " deleted" );
 	app->mouseReleased(canvas.width * _blob.boundingRect.getCenter().x, canvas.height * _blob.boundingRect.getCenter().y , 0);
 }
 
