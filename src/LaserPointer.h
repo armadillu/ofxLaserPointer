@@ -51,6 +51,8 @@ public:
 	int					numErode;
 	int					numDilate;
 
+	bool				drawDebug;
+
 	ofxCvColorImage			colorImg;
 	ofxCvGrayscaleImage		grayImg;
 

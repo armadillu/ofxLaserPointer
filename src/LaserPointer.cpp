@@ -67,6 +67,7 @@ void LaserPointer::setup(ofRectangle outputArea, ofBaseApp * app_, int camW, int
 
 	gui.addToggle("doWarp", doWrap );
 	gui.addToggle("showCamImage", showCamImage);
+	gui.addToggle("drawDebug", drawDebug);
 
 	gui.addTitle("Image Processing").setNewColumn(false);
 	gui.addSlider("imgThreshold", imgThreshold, 1, 255 );
@@ -132,19 +133,24 @@ void LaserPointer::draw(){
 		warpImg.draw(0,0, canvas.width, canvas.height);
 	}
 
-	ofPushMatrix();
-	ofScale( canvas.width / PROCESSING_W, canvas.height / PROCESSING_H);
 
-	blobTracker.draw(0,0);
-    for (int i = 0; i < blobTracker.size(); i++){
+	if (drawDebug){
 
-		ofSetColor(255);
-        ofDrawBitmapString(ofToString( blobTracker[i].id ),
-                           20 + blobTracker[i].boundingRect.getCenter().x * PROCESSING_W,
-                           10 + blobTracker[i].boundingRect.getCenter().y * PROCESSING_H
-						   );
-    }
-	ofPopMatrix();
+		ofPushMatrix();
+		ofScale( canvas.width / PROCESSING_W, canvas.height / PROCESSING_H);
+
+		blobTracker.draw(0,0);
+		for (int i = 0; i < blobTracker.size(); i++){
+
+			ofSetColor(255);
+			ofDrawBitmapString(ofToString( blobTracker[i].id ),
+							   20 + blobTracker[i].boundingRect.getCenter().x * PROCESSING_W,
+							   10 + blobTracker[i].boundingRect.getCenter().y * PROCESSING_H
+							   );
+		}
+		ofPopMatrix();
+
+	}
 	//TIME_SAMPLE_DRAW_BOTTOM_RIGHT();
 }
 
